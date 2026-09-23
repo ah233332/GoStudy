@@ -66,7 +66,6 @@ malformed import path "study/01-basics/for循环": invalid char '循'
 
 ## 待办
 
-- [ ] `03-practice/char-count` 目前编译不过：`switch v` 是值匹配，`case` 里不能放布尔表达式，
-      要改成不带表达式的 `switch { case 条件: }` 写法
-- [ ] 给它补上统计结果的打印
 - [ ] 以后学完 import 之后，把模块路径改成 `github.com/<用户名>/study`
+
+    接着学习GO语言进阶内容，后续完善打通项目前后端
