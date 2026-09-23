@@ -1,0 +1,19 @@
+# ---- 编译 / 构建产物 ----
+*.exe
+*.test
+*.out
+
+# ---- IDE / 编辑器的个人状态（工程配置本身保留）----
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/shelf/
+.vscode/*.log
+
+# ---- 系统垃圾 ----
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.log
+
+# 注意：各练习下的 srcdata 等原始数据文件是刻意保留的练习材料，不要 ignore
