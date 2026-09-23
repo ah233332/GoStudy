@@ -8,6 +8,10 @@
 
 代码注释保留中文原文。
 
+## 为什么上传到GitHub
+
+因为我最近学习了Git,试着在vscode里面用git连接到了github
+
 ## 运行方式
 
 ```bash
