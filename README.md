@@ -76,4 +76,4 @@ malformed import path "study/01-basics/for循环": invalid char '循'
 
 ## 待办
 
-    接着学习GO语言进阶内容，后续完善打通项目前后端
+接着学习GO语言进阶内容，再学习Gin框架，后续完善打通项目前后端
