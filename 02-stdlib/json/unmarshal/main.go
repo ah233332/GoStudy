@@ -11,6 +11,9 @@ type Person struct {
 	Salary float64 //`json:"PersonSalary"`
 }
 
+//反序列化时，要确保序列化前后的数据类型相同
+//通过程序得到的json序列，是不需要手动加上\的
+
 func unStruct() {
 	str := "{\"PersonName\":\"张三\",\"Age\":20,\"Salary\":10000}"
 
