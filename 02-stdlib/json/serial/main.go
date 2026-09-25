@@ -6,9 +6,9 @@ import (
 )
 
 type Person struct {
-	Name   string
-	Age    int
-	Salary float64
+	Name   string  `json:"PersonName"` //反射机制
+	Age    int     `json:"PersonAge"`
+	Salary float64 `json:"PersonSalary"`
 }
 
 func testStruct() {
@@ -39,11 +39,11 @@ func testMap() {
 	a["name"] = "李超"
 	a["age"] = 18
 	a["hobby"] = []string{"看书", "跑步"}
-	mapdata, err := json.Marshal(a)
+	mapData, err := json.Marshal(a)
 	if err != nil {
 		return
 	}
-	fmt.Println("map序列化后的 JSON 数据:", string(mapdata))
+	fmt.Println("map序列化后的 JSON 数据:", string(mapData))
 	//map是无序的，序列化后无法保证顺序
 }
 
@@ -69,11 +69,27 @@ func testSlice() {
 	fmt.Println("slice序列化后的 JSON 数据:", string(sliceData))
 }
 
+func testFloat64() {
+	//对基本类型序列化
+	num1 := 1145.14
+	data, err := json.Marshal(num1)
+	if err != nil {
+		return
+	}
+	fmt.Println("float64序列化后的 JSON 数据:", string(data))
+}
+
 func main() {
 	//将结构体，map，切片进行序列化
 	testStruct()
 	fmt.Println()
+
 	testMap()
 	fmt.Println()
+
 	testSlice()
+	fmt.Println()
+
+	//对基本数据类型序列化意义不大
+	testFloat64()
 }
