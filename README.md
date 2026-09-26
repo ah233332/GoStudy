@@ -37,6 +37,9 @@ study/
 │   ├── flag/
 │   │   ├── args/                 os.Args 命令行参数
 │   │   └── flagdemo/             flag 解析命名命令行参数
+│   ├── factoryModel/             工厂模式：私有结构体、构造函数与访问方法
+│   │   ├── main/main.go          调用 NewStudent 并输出学生信息
+│   │   └── model/model.go        student 封装、NewStudent、GetScore
 │   ├── file/
 │   │   ├── file-study/
 │   │   │   ├── create-read/      文件创建、写入、清空、追加、读取
