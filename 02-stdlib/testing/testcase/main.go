@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 )
 
@@ -14,38 +13,48 @@ type Monster struct {
 	Skill string `json:"技能"`
 }
 
-func (p *Monster) Store() {
+// 序列化，保存到文件内。
+func (p *Monster) Store(jsonPath string) bool {
 	data, err := json.Marshal(&p)
 	if err != nil {
-		return
+		fmt.Println("marshal err =", err)
+		return false
 	}
-	jsonPath := "D:/code/go/study/02-stdlib/testing/testcase/js.json"
-	file, err := os.OpenFile(jsonPath, os.O_CREATE|os.O_WRONLY, 0666)
 
+	file, err := os.OpenFile(jsonPath, os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		fmt.Println("openfile err =", err)
+		return false
+	}
+	//我用的是缓存写入的方法
+	//还可以一次性写入方法 os.WriterFile()
 	writer := bufio.NewWriter(file)
 	writer.WriteString(string(data))
 	writer.Flush()
 	file.Close()
+	return true
 }
 
-func (p *Monster) ReStore(jsPath string) {
-	var per Monster
-
-	file, err := os.OpenFile(jsPath, os.O_RDONLY, 0666)
+// 将文件内容反序列化
+func (p *Monster) ReStore(jsPath string) bool {
+	//我最开始用的os.openfile + io.readall,适合自定义打开文件(读+写+追加,权限)
+	// 如果只读没必要引入两个包包，直接os.readfile()
+	//可以用一次性的读取方法 os.ReadFile()
+	data, err := os.ReadFile(jsPath) //正好返回data为[]byte类型，与unmarshal适配
 	if err != nil {
-		return
-	}
-	reader := bufio.NewReader(file)
-	data, err := io.ReadAll(reader)
-	if err != nil {
-		return
+		fmt.Println("readfile err :", err)
+		return false
 	}
 
-	err = json.Unmarshal(data, &per)
+	err = json.Unmarshal(data, p)
+	if err != nil {
+		fmt.Println("unmarshal err:", err)
+		return false
+	}
 
-	fmt.Println()
-	fmt.Printf("json文件反序列化为:%v", per)
+	fmt.Printf("json文件反序列化为:%v", *p)
 
+	return true
 }
 
 func main() {
@@ -55,8 +64,8 @@ func main() {
 		Skill: "打瓦",
 	}
 
-	p.Store()
 	str := "D:/code/go/study/02-stdlib/testing/testcase/js.json"
+	p.Store(str)
 	p.ReStore(str)
 
 }
