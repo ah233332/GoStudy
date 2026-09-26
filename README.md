@@ -8,9 +8,6 @@
 
 代码注释保留中文原文。
 
-## 为什么上传到GitHub
-
-因为我最近学习了Git,试着在vscode里面用git连接到了github
 
 ## 运行方式
 
@@ -19,8 +16,6 @@ cd D:\code\go\study   # 先进入仓库根目录
 go run ./01-basics/map   # 再运行某一个练习
 ```
 
-必须从仓库根目录运行：程序里的文件路径是相对**当前工作目录**的，不是相对 .go 文件所在目录。
-想验证的话，在程序里 `fmt.Println(os.Getwd())` 打印一下当前工作目录就知道了。
 
 ## 目录结构
 
@@ -39,18 +34,28 @@ study/
 │   ├── struct-json/              结构体、匿名嵌入、方法、struct tag 与 json
 │   └── init-defer/               init 函数、defer 执行顺序
 ├── 02-stdlib/                    标准库
-│   ├── args/                     os.Args 命令行参数
-│   ├── file-study/
-│   │   ├── create-read/          文件创建、写入、清空、追加、读取
-│   │   ├── read-two-ways/        bufio 逐行读 与 os.ReadFile 一次性读
-│   │   └── copy-file/            读一个文件写到另一个文件、os.Stat
-│   └── copy-dir/                 io.Copy 拷贝任意二进制文件
+│   ├── flag/
+│   │   ├── args/                 os.Args 命令行参数
+│   │   └── flagdemo/             flag 解析命名命令行参数
+│   ├── file/
+│   │   ├── file-study/
+│   │   │   ├── create-read/      文件创建、写入、清空、追加、读取
+│   │   │   ├── read-two-ways/    bufio 逐行读 与 os.ReadFile 一次性读
+│   │   │   └── copy-file/        读一个文件写到另一个文件、os.Stat
+│   │   └── copy-dir/
+│   │       ├── srcdata/          拷贝练习使用的源文件
+│   │       └── main.go           io.Copy 拷贝任意二进制文件
+│   ├── json/
+│   │   ├── serial/               结构体、map、切片、基本类型序列化
+│   │   └── unmarshal/            结构体、map、切片反序列化
+│   └── testing/
+│       ├── calTest/              cal.go 与 cal_test.go，基础单元测试
+│       └── testcase/             JSON 读写函数及其测试用例
 └── 03-practice/                  综合练习
     └── char-count/               统计文件里的英文、数字、空格、其他字符
 ```
 
-每个练习目录里只有一个 `main.go`。原因是：同一个包里不能有两个 `func main`，
-所以每个可执行程序必须独占一个目录。
+
 
 ## 常用命令
 
@@ -58,21 +63,11 @@ study/
 go run ./01-basics/map   # 运行某一个练习
 go build ./...           # 编译全部，检查有没有报错
 go vet ./...             # 静态检查
-go test ./...            # 跑测试（目前还没有测试）
+go test ./...            # 跑测试
 gofmt -l .               # 列出没有格式化的文件
 gofmt -w .               # 格式化并写回
 ```
 
-## 为什么目录名是英文
-
-Go 的导入路径不允许出现非 ASCII 字符。中文目录名会让 `go build ./...`、`go vet ./...`、
-`go test ./...` 全部失败，报错形如：
-
-```text
-malformed import path "study/01-basics/for循环": invalid char '循'
-```
-
-所以目录名使用英文，文件名和注释保持中文。
 
 ## 待办
 
