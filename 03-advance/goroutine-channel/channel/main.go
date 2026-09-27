@@ -3,9 +3,10 @@ package main
 import (
 	"fmt"
 	"sync" //synchornized同步
+	"time"
 )
 
-//计算1-200各个数的阶乘，并把各个数的阶乘放入map中
+//计算1-20各个数的阶乘，并把各个数的阶乘放入map中
 
 var (
 	myMap = make(map[int]int, 10)
@@ -24,24 +25,26 @@ func test(n int) {
 	myMap[n] = res
 	lock.Unlock()
 	//concurrent map writes?
-	//多进程写入矛盾错误
+	//多goroutine写入矛盾错误
 	//竞态
 	//资源竞争问题
 }
 
 func main() {
 
-	//开了200个协程来做事情
-	for i := 1; i <= 200; i++ {
+	//开了20个协程来做事情
+	for i := 1; i <= 20; i++ {
 		go test(i)
 	}
 
-	// time.Sleep(time.Second * 10)
+	time.Sleep(time.Second * 5) //这个属于猜时间,后续学waitgroup
 
-	lock.Lock() //这里为什么要加锁？？ 新手用全局互斥锁，高手用channel
+	//lock.Lock() 这地方加锁是防止myMap[n] = res与range矛盾，
+	// 都访问myMap全局变量
+	//新手用全局互斥锁，高手用channel
 	for i, v := range myMap {
 		fmt.Printf("map[%d]=%d\n", i, v)
 	}
-	lock.Unlock()
+	//lock.Unlock()
 
 }
