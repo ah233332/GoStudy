@@ -18,7 +18,7 @@ type Count struct {
 func main() {
 	//统计文件内数字、英文、空格、字符数量
 	var count Count
-	filename := "03-practice/char-count/作用文件.txt"
+	filename := "02-stdlib/file/char-count/作用文件.txt"
 	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Println("打开文件失败:", err)

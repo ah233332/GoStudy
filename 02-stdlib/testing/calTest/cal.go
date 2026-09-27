@@ -1,4 +1,4 @@
-package main
+package caltest
 
 func add(n int) int {
 	ans := 0
