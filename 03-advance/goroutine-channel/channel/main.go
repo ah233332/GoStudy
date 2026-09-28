@@ -1,50 +1,44 @@
 package main
 
-import (
-	"fmt"
-	"sync" //synchornized同步
-	"time"
-)
+import "fmt"
 
-//计算1-20各个数的阶乘，并把各个数的阶乘放入map中
-
-var (
-	myMap = make(map[int]int, 10)
-	lock  sync.Mutex //全局的互斥锁
-
-)
-
-// 计算n!,将结果放入myMap内
-func test(n int) {
-	res := 1
-	for i := 1; i <= n; i++ {
-		res *= i
-	}
-
-	lock.Lock()
-	myMap[n] = res
-	lock.Unlock()
-	//concurrent map writes?
-	//多goroutine写入矛盾错误
-	//竞态
-	//资源竞争问题
+type Cat struct {
+	Name string
+	Age  int
 }
 
 func main() {
+	//channel放满了不能继续放了，取空了也不能接着取了
+	var intChan chan int
+	intChan = make(chan int, 3)
+	num1 := 2
+	intChan <- 1
+	intChan <- num1
+	intChan <- 5
+	fmt.Println(intChan, &intChan)
 
-	//开了20个协程来做事情
-	for i := 1; i <= 20; i++ {
-		go test(i)
+	num := <-intChan
+	<-intChan
+	//相当于扔了一个数据
+	fmt.Println(num, <-intChan, cap(intChan), len(intChan)) //cap是容量
+
+	cat := Cat{
+		Name: "奖杯猫",
+		Age:  3,
 	}
+	//存放任意类型的管道
+	allChan := make(chan interface{}, 3)
+	allChan <- "hello"
+	allChan <- 34
+	allChan <- cat
 
-	time.Sleep(time.Second * 5) //这个属于猜时间,后续学waitgroup
+	<-allChan
+	<-allChan
 
-	//lock.Lock() 这地方加锁是防止myMap[n] = res与range矛盾，
-	// 都访问myMap全局变量
-	//新手用全局互斥锁，高手用channel
-	for i, v := range myMap {
-		fmt.Printf("map[%d]=%d\n", i, v)
-	}
-	//lock.Unlock()
+	newcat := <-allChan
+	fmt.Printf("类型=%T  数据=%v\n", newcat, newcat)
+	cat111 := newcat.(Cat) //类型断言
+	// newcat刚拿出来是interface{}空接口，可以是任何类型，需要.(type)判断一下
+	fmt.Printf("cat.name=%v\n", cat111.Name)
 
 }
