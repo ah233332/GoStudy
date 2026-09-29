@@ -7,6 +7,8 @@ type Cat struct {
 	Age  int
 }
 
+//学习基础的channel用法
+
 func main() {
 	//channel放满了不能继续放了，取空了也不能接着取了
 	var intChan chan int

@@ -11,6 +11,7 @@ type Person struct {
 	Address string
 }
 
+// 简单的结构体管道写入与读取
 func randName() string {
 	names := []string{"一一", "二二", "三三", "四四", "五五", "六六", "七七",
 		"八八", "九九", "事事", "elel", "twtw", "thirthir", "ff", "fwfw", "qiqi"}
