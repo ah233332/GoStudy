@@ -7,6 +7,9 @@ import (
 
 // 单个管道的写入与读取
 // 两个协程，一个写入数据，一个读取数据
+
+//利用一个chan bool，来解决主线程快速结束从而影响其他线程的问题
+
 var intChan = make(chan int, 50)
 var exitChan = make(chan bool, 1)
 

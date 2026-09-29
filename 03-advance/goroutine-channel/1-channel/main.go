@@ -8,7 +8,7 @@ type Cat struct {
 }
 
 //学习基础的channel用法
-
+//类型断言，接口输出需要判断一下类型.(type)
 func main() {
 	//channel放满了不能继续放了，取空了也不能接着取了
 	var intChan chan int

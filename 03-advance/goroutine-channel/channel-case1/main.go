@@ -12,6 +12,8 @@ type Person struct {
 }
 
 // 简单的结构体管道写入与读取
+//很基础的写入与读取，没什么难度
+
 func randName() string {
 	names := []string{"一一", "二二", "三三", "四四", "五五", "六六", "七七",
 		"八八", "九九", "事事", "elel", "twtw", "thirthir", "ff", "fwfw", "qiqi"}
