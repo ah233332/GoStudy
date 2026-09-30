@@ -56,7 +56,7 @@ study/
 │   └── testing/
 │       ├── calTest/              cal.go 与 cal_test.go，基础单元测试
 │       └── testcase/             JSON 读写函数及其测试用例
-└── 03-advance/                   进阶：goroutine 与 channel
+└── 03-advance/                   进阶学习
     ├── 基本概念.txt            进程/线程、并发/并行、goroutine 特点与 channel 队列
     └── goroutine-channel/
         ├── 1-channel/             channel 基础：缓冲队列、cap/len、interface{} 与类型断言
@@ -64,7 +64,8 @@ study/
         ├── channel-case1/         Person 随机数据：生成 10 个结构体写入 channel 后遍历输出
         ├── channel-case2/         writeData/readData 两个协程协作，exitChan 通知主协程等待
         ├── channel-case3/         8 个 worker 计算前缀和，WaitGroup 等待后关闭 resChan 并顺序输出
-        ├── channel-case4/         待完成：goroutine + channel + 文件排序，目前只有需求图 case4.png
+        ├── channel-case4/         待完成：goroutine + channel + 文件排序，已有需求图 case4.png 和空的 mian.go
+        ├── channel-case5/         12 个 worker 判断 1-200000 中的素数，WaitGroup 等待后关闭 primeChan 并排序输出
         ├── goLock/                20 个协程计算阶乘写入共享 map，sync.Mutex 保护并发写
         ├── goTest/                main 与子协程每秒交替打印，观察并发执行和主协程退出
         └── runtime/               runtime.NumCPU 与 GOMAXPROCS 查看/限制 CPU 核数
