@@ -35,8 +35,7 @@ func isprime(n int) bool {
 }
 
 // 结果写入primeChan
-func calcaulate(wg *sync.WaitGroup) {
-	defer wg.Done()
+func calcaulate() {
 
 	for v := range numChan {
 		if isprime(v) {
@@ -65,8 +64,14 @@ func main() {
 	go writeChan()
 	var wg sync.WaitGroup
 	for i := 1; i <= 12; i++ {
+
 		wg.Add(1)
-		go calcaulate(&wg)
+
+		go func() {
+			defer wg.Done()
+			calcaulate()
+		}()
+
 	}
 
 	go func() {
