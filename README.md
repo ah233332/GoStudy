@@ -65,7 +65,12 @@ study/
         ├── channel-case2/         writeData/readData 两个协程协作，exitChan 通知主协程等待
         ├── channel-case3/         8 个 worker 计算前缀和，WaitGroup 等待后关闭 resChan 并顺序输出
         ├── channel-case4/         待完成：goroutine + channel + 文件排序，已有需求图 case4.png 和空的 mian.go
-        ├── channel-case5/         12 个 worker 判断 1-200000 中的素数，WaitGroup 等待后关闭 primeChan 并排序输出
+        ├── channel-case5/
+        │   ├── way1/              1way-main.go：12 个 worker 判断 1-200000 中的素数，WaitGroup 等待后关闭 primeChan 并排序输出
+        │   └── way2/              2way-main.go：4 个 worker 判断 0-8000 中的素数，exitChan 收集退出信号后关闭 primeChan
+        ├── channel-case6/         待完成：1 个协程写 1-2000 到 numChan，8 个协程取出 n 计算 1+...+n 写入 resChan，已有需求图 case6.png 和空的 main.go
+        ├── select/                select 多路复用：多个 channel 同时等待，default 分支避免 deadlock
+        ├── recover/               defer + recover 捕获子协程 panic，防止整个程序崩溃
         ├── goLock/                20 个协程计算阶乘写入共享 map，sync.Mutex 保护并发写
         ├── goTest/                main 与子协程每秒交替打印，观察并发执行和主协程退出
         └── runtime/               runtime.NumCPU 与 GOMAXPROCS 查看/限制 CPU 核数
