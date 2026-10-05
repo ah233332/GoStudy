@@ -15,3 +15,17 @@ channel管道
     1.本质是队列,先进先出
     2.线程安全，多goroutine访问时，不需要加锁,没有资源竞争问题
     3.有类型的，string类型的channel只能存放string类型数据，尽量不混用
+
+channel管道细节
+    1.默认情况下，管道是双向的，可读可写
+        var chan0 chan int 可读可写
+    2.可以声明为只读或只写
+        var chan1 chan<- int 只写属性管道
+        var chan2 <-chan int 只读属性管道
+        本质还是chan类型的，只是赋予一个限制属性 
+        传参的时候，设置读写属性，可以防止误操作
+    3.用select来解决从管道取数据阻塞问题
+    4.goroutine中使用recover,解决协程中出现的panic,导致程序崩溃问题
+            如果协程中出现panic问题，会导致整个程序崩溃。
+            这时可以使用recover来捕获panic进行处理，
+        这样即使协程出现崩溃，也不影响主线程工作。
