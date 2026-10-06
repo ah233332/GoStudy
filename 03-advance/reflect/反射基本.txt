@@ -1,0 +1,24 @@
+反射
+
+    GO反射通过reflect包，在运行时获取变量的类型与值，
+可以动态读取和修改数据。
+
+    优点：写通用框架，框架底层大量使用，如json、GORM
+    缺点：性能低、丢失类型安全
+
+//反射中，变量、空接口和reflect.value可以互相转换的
+
+func test(b interface{}){
+
+//1.interface{} -> reflect.value
+    rVal := reflect.ValueOf(b)
+
+//2.reflect.value -> interface{}
+    iVal := rVal.Interface()
+
+//3.interface{} -> 原来变量类型 , 类型断言
+    v := iVal.(int)
+
+}
+
+
