@@ -22,6 +22,7 @@ study/
 ├── README.md
 ├── 01-basics/                    基础语法
 │   ├── input-output/             输入输出、基本数据类型、fmt 格式化动词
+│   ├── const/                    const 常量、iota 自增、常量编译期限制
 │   ├── if-else/                  if 语句、逻辑运算符
 │   ├── switch-case/              switch 语句、fallthrough 穿透
 │   ├── for-loop/                 for 循环、range 遍历
@@ -57,23 +58,27 @@ study/
 │       ├── calTest/              cal.go 与 cal_test.go，基础单元测试
 │       └── testcase/             JSON 读写函数及其测试用例
 └── 03-advance/                   进阶学习
-    ├── 基本概念.txt            进程/线程、并发/并行、goroutine 特点与 channel 队列
-    └── goroutine-channel/
-        ├── 1-channel/             channel 基础：缓冲队列、cap/len、interface{} 与类型断言
-        ├── 2-channel/             channel 关闭与 range 遍历，避免用变化的 len 遍历导致漏读
-        ├── channel-case1/         Person 随机数据：生成 10 个结构体写入 channel 后遍历输出
-        ├── channel-case2/         writeData/readData 两个协程协作，exitChan 通知主协程等待
-        ├── channel-case3/         8 个 worker 计算前缀和，WaitGroup 等待后关闭 resChan 并顺序输出
-        ├── channel-case4/         待完成：goroutine + channel + 文件排序，已有需求图 case4.png 和空的 mian.go
-        ├── channel-case5/
-        │   ├── way1/              1way-main.go：12 个 worker 判断 1-200000 中的素数，WaitGroup 等待后关闭 primeChan 并排序输出
-        │   └── way2/              2way-main.go：4 个 worker 判断 0-8000 中的素数，exitChan 收集退出信号后关闭 primeChan
-        ├── channel-case6/         待完成：1 个协程写 1-2000 到 numChan，8 个协程取出 n 计算 1+...+n 写入 resChan，已有需求图 case6.png 和空的 main.go
-        ├── select/                select 多路复用：多个 channel 同时等待，default 分支避免 deadlock
-        ├── recover/               defer + recover 捕获子协程 panic，防止整个程序崩溃
-        ├── goLock/                20 个协程计算阶乘写入共享 map，sync.Mutex 保护并发写
-        ├── goTest/                main 与子协程每秒交替打印，观察并发执行和主协程退出
-        └── runtime/               runtime.NumCPU 与 GOMAXPROCS 查看/限制 CPU 核数
+    ├── goroutine-channel/
+    │   ├── 协程管道基本.txt       进程/线程、并发/并行、goroutine 特点、channel 队列与只读/只写、select/recover
+    │   ├── 1-channel/             channel 基础：缓冲队列、cap/len、interface{} 与类型断言
+    │   ├── 2-channel/             channel 关闭与 range 遍历，避免用变化的 len 遍历导致漏读
+    │   ├── channel-case1/         Person 随机数据：生成 10 个结构体写入 channel 后遍历输出
+    │   ├── channel-case2/         writeData/readData 两个协程协作，exitChan 通知主协程等待
+    │   ├── channel-case3/         8 个 worker 计算前缀和，WaitGroup 等待后关闭 resChan 并顺序输出
+    │   ├── channel-case4/         待完成：goroutine + channel + 文件排序，已有需求图 case4.png 和空的 mian.go
+    │   ├── channel-case5/
+    │   │   ├── way1/              1way-main.go：12 个 worker 判断 1-200000 中的素数，WaitGroup 等待后关闭 primeChan 并排序输出
+    │   │   └── way2/              2way-main.go：4 个 worker 判断 0-8000 中的素数，exitChan 收集退出信号后关闭 primeChan
+    │   ├── channel-case6/         待完成：1 个协程写 1-2000 到 numChan，8 个协程取出 n 计算 1+...+n 写入 resChan，已有需求图 case6.png 和空的 main.go
+    │   ├── select/                select 多路复用：多个 channel 同时等待，default 分支避免 deadlock
+    │   ├── recover/               defer + recover 捕获子协程 panic，防止整个程序崩溃
+    │   ├── goLock/                20 个协程计算阶乘写入共享 map，sync.Mutex 保护并发写
+    │   ├── goTest/                main 与子协程每秒交替打印，观察并发执行和主协程退出
+    │   └── runtime/               runtime.NumCPU 与 GOMAXPROCS 查看/限制 CPU 核数
+    └── reflect/                   反射
+        ├── 1-reflect/             reflect.TypeOf / ValueOf、Kind、Interface() 与类型断言，基本类型和结构体
+        ├── 反射基本.txt           反射的优缺点、interface{} / reflect.Value / 原类型 三种转换
+        └── 反射转换示意图.png
 ```
 
 ## 常用命令
