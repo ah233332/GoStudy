@@ -9,6 +9,8 @@ import (
 func reflectTest0(b interface{}) {
 	//通过反射获取变量的type(类型),kind(类别),值
 	//kind类别 比 type类型 范围要大
+	//kind抽象描述，type是具体描述
+	//例: kind:struct  type:pkg.Student
 
 	//1.获取reflect.Type
 	rTyp := reflect.TypeOf(b)
@@ -22,6 +24,7 @@ func reflectTest0(b interface{}) {
 	//rVal显示是int，但本质是reflect.value类型
 
 	fmt.Println(2 + rVal.Int())
+	//.int()要匹配类型，如果用.float()会报错
 
 	//3.获取变量对应的kind
 	kind1 := rTyp.Kind()
