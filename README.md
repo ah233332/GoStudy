@@ -58,7 +58,7 @@ study/
 │       ├── calTest/              cal.go 与 cal_test.go，基础单元测试
 │       └── testcase/             JSON 读写函数及其测试用例
 └── 03-advance/                   进阶学习
-    ├── goroutine-channel/
+    ├── goroutine-channel/        协程与管道  
     │   ├── 协程管道基本.txt       进程/线程、并发/并行、goroutine 特点、channel 队列与只读/只写、select/recover
     │   ├── 1-channel/             channel 基础：缓冲队列、cap/len、interface{} 与类型断言
     │   ├── 2-channel/             channel 关闭与 range 遍历，避免用变化的 len 遍历导致漏读
@@ -79,7 +79,7 @@ study/
         ├── 1-reflect/             reflect.TypeOf / ValueOf、Kind、Interface() 与类型断言，基本类型和结构体
         ├── 2-reflect/             通过反射修改变量的值：reflect.ValueOf(&x).Elem().SetInt/SetString，必须传指针
         ├── reflect-case1/         小练习：float64 取 Type/Kind/值，Value→interface{}→float64，并用反射改 string 变量
-        ├── reflect-case2/         待完成：反射遍历 Cal 结构体字段并调用 GetSub 输出减法，已有需求图 reflect-case2.png 和空的 main.go
+        ├── reflect-case2/         Cal 结构体：反射遍历 Num1/Num2 字段，输入名字后反射调用 GetSub 输出减法
         ├── reflect-caseBest/      反射操作结构体：遍历字段、读 json tag、按名字调用方法、FieldByName 修改字段值
         ├── 反射基本.txt           反射的优缺点、interface{} / reflect.Value / 原类型 三种转换
         └── 反射转换示意图.png
