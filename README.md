@@ -77,6 +77,10 @@ study/
     │   └── runtime/               runtime.NumCPU 与 GOMAXPROCS 查看/限制 CPU 核数
     └── reflect/                   反射
         ├── 1-reflect/             reflect.TypeOf / ValueOf、Kind、Interface() 与类型断言，基本类型和结构体
+        ├── 2-reflect/             通过反射修改变量的值：reflect.ValueOf(&x).Elem().SetInt/SetString，必须传指针
+        ├── reflect-case1/         小练习：float64 取 Type/Kind/值，Value→interface{}→float64，并用反射改 string 变量
+        ├── reflect-case2/         待完成：反射遍历 Cal 结构体字段并调用 GetSub 输出减法，已有需求图 reflect-case2.png 和空的 main.go
+        ├── reflect-caseBest/      反射操作结构体：遍历字段、读 json tag、按名字调用方法、FieldByName 修改字段值
         ├── 反射基本.txt           反射的优缺点、interface{} / reflect.Value / 原类型 三种转换
         └── 反射转换示意图.png
 ```
