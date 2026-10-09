@@ -70,8 +70,8 @@ study/
     │   │   ├── way1/              1way-main.go：12 个 worker 判断 1-200000 中的素数，WaitGroup 等待后关闭 primeChan 并排序输出
     │   │   └── way2/              2way-main.go：4 个 worker 判断 0-8000 中的素数，exitChan 收集退出信号后关闭 primeChan
     │   ├── channel-case6/         1 个协程写 1-2000 到 numChan，8 个协程取出 n 计算 1+...+n 存入 resChan
-    │   │   ├── way1-[]list+intchan/   完成：8 个协程把结果写进 []int，再统一送入 resChan 打印
-    │   │   └── way2-StructChan/       待完成：用 structChan 实现，不依赖 []int
+    │   │   ├── way1-list+intchan/     完成：[]int 收集 8 个协程结果，再统一送入 resChan 打印
+    │   │   └── way2-StructChan/       完成：结果包成 Res 结构体走 resChan，再按编号展开打印
     │   ├── select/                select 多路复用：多个 channel 同时等待，default 分支避免 deadlock
     │   ├── recover/               defer + recover 捕获子协程 panic，防止整个程序崩溃
     │   ├── goLock/                20 个协程计算阶乘写入共享 map，sync.Mutex 保护并发写
