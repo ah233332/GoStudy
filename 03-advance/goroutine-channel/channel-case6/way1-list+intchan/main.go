@@ -23,7 +23,7 @@ func PrintResChan() {
 	index := 0
 	for v := range resChan {
 		index++
-		time.Sleep(time.Millisecond * 20)
+		time.Sleep(time.Millisecond * 2)
 		fmt.Printf("res[%d]=%d\n", index, v)
 	}
 }
