@@ -65,13 +65,16 @@ study/
     │   ├── channel-case1/         Person 随机数据：生成 10 个结构体写入 channel 后遍历输出
     │   ├── channel-case2/         writeData/readData 两个协程协作，exitChan 通知主协程等待
     │   ├── channel-case3/         8 个 worker 计算前缀和，WaitGroup 等待后关闭 resChan 并顺序输出
-    │   ├── channel-case4/         待完成：goroutine + channel + 文件排序，已有需求图 case4.png 和空的 mian.go
-    │   ├── channel-case5/
-    │   │   ├── way1/              1way-main.go：12 个 worker 判断 1-200000 中的素数，WaitGroup 等待后关闭 primeChan 并排序输出
-    │   │   └── way2/              2way-main.go：4 个 worker 判断 0-8000 中的素数，exitChan 收集退出信号后关闭 primeChan
-    │   ├── channel-case6/         1 个协程写 1-2000 到 numChan，8 个协程取出 n 计算 1+...+n 存入 resChan
-    │   │   ├── way1-list+intchan/     完成：[]int 收集 8 个协程结果，再统一送入 resChan 打印
-    │   │   └── way2-StructChan/       完成：结果包成 Res 结构体走 resChan，再按编号展开打印
+    │   ├── channel-case4/         统计 1-200000 中的素数（应用实例3）
+    │   │   ├── way1/              1way-main.go：12 个 worker，WaitGroup 等待后关闭 primeChan 并排序输出
+    │   │   └── way2/              2way-main.go：4 个 worker 判断 0-8000，exitChan 收集退出信号后关闭 primeChan
+    │   ├── channel-case5/         1 个协程写 1-2000 到 numChan，8 个协程取出 n 计算 1+...+n 存入 resChan
+    │   │   ├── way1-list+intchan/     []int 收集 8 个协程结果，再统一送入 resChan 打印
+    │   │   └── way2-StructChan/       结果包成 Res 结构体走 resChan，再按编号展开打印
+    │   ├── channel-caseBest/      BestCase：goroutine + channel + 文件排序
+    │   │   ├── srcdata/           10 个协程各随机生成 1000 个数的原始文件
+    │   │   ├── dstdata/           10 个排序协程排序后写出的结果文件
+    │   │   └── main.go            10 个写协程完成后用 structChan 一键唤醒 10 个排序协程，读 srcdata 排序写 dstdata
     │   ├── select/                select 多路复用：多个 channel 同时等待，default 分支避免 deadlock
     │   ├── recover/               defer + recover 捕获子协程 panic，防止整个程序崩溃
     │   ├── goLock/                20 个协程计算阶乘写入共享 map，sync.Mutex 保护并发写
