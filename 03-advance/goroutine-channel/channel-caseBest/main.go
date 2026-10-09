@@ -98,8 +98,15 @@ func main() {
 			writeDataToFile(srcPath1)
 		}()
 	}
+
+	//利用一个structChan来控制协程
+	//空的struct是0字节,相当于一个信号线
 	ready := make(chan struct{})
+
+	//不起协程的话会因为要等WriteWg结束，从来影响main继续执行
+	//起一个协程监工writeWg,这样起协程不影响main继续往下执行
 	go func() {
+		//一旦识别到writeWg结束，就关闭ready
 		writeWg.Wait()
 		close(ready)
 	}()
@@ -111,6 +118,12 @@ func main() {
 		sortWg.Add(1)
 		go func() {
 			defer sortWg.Done()
+			//从ready取数据,来卡住协程继续执行
+			//管道没东西,就一直在等,直到管道关闭
+			//也可以给管道发一个值,ready<-struct{}{},但是只能醒来一个协程
+			//close管道可以一键唤醒所以协程
+
+			//此时十个协程全都准备好了,就等close(ready),一键启动了
 			<-ready
 			SortData(srcPath2, dstPath)
 		}()
