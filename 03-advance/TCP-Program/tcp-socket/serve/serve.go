@@ -1,0 +1,56 @@
+package main
+
+import (
+	"fmt"
+	"net"
+)
+
+func processClient(conn net.Conn) {
+	//循环接收客户端发送的数据
+	defer conn.Close() //关闭conn,防止拥堵
+
+	for {
+		buf := make([]byte, 1024)
+		//conn.Read(buf)
+		//1.等待客户端通过conn发送信息
+		//2.如果客户端没有write[发送]，那么协程会阻塞在这
+		fmt.Println("服务器在等待客户端" + conn.RemoteAddr().String() + "发送信息...")
+		n, err := conn.Read(buf)
+		if err != nil {
+			fmt.Println("服务端read err=", err)
+			return
+		}
+
+		//客户端发送的内容，显示到服务端终端上
+		fmt.Print(string(buf[:n]))
+	}
+
+}
+
+func main() {
+	fmt.Println("服务器开始监听...")
+
+	//tcp表示网络协议
+	//127.0.0.1:8800 表示在本地监听 8800端口,最安全的
+	listen, err := net.Listen("tcp", "127.0.0.1:8800")
+	if err != nil {
+		fmt.Println("listen err=", err)
+		return
+	}
+	defer listen.Close()
+
+	//循环等待客户端链接
+	for {
+		fmt.Println("等待客户端链接...")
+		conn, err := listen.Accept()
+		if err != nil {
+			fmt.Println("accept err=", err)
+		} else {
+			fmt.Printf("accept suc conn=%v  客户端ip=%v\n", conn, conn.RemoteAddr().String())
+		}
+
+		go processClient(conn)
+
+	}
+
+}
