@@ -89,7 +89,11 @@ study/
     │   ├── 反射基本.txt           反射的优缺点、interface{} / reflect.Value / 原类型 三种转换
     │   └── 反射转换示意图.png
     └── TCP-Program/               TCP编程
-        └── 网络编程基础           TCP/IP、HTTP 等基础概念笔记
+        ├── 网络编程基础           TCP/IP、HTTP 等基础概念笔记
+        └── tcp-socket/            TCP socket 入门：服务端监听、客户端连接与收发
+            ├── serve/serve.go     监听 127.0.0.1:8800，Accept 后开 goroutine 循环读取客户端发来的数据
+            ├── client/client.go   拨号连接服务端，从终端读一行发送后退出
+            └── tcp-socket快速入门.txt  服务端/客户端流程笔记；待办：持续交互、输入 exit 退出
 ```
 
 ## 常用命令
