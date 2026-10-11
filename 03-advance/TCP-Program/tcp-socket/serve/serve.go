@@ -9,12 +9,13 @@ func processClient(conn net.Conn) {
 	//循环接收客户端发送的数据
 	defer conn.Close() //关闭conn,防止拥堵
 
+	fmt.Println("服务器在等待客户端" + conn.RemoteAddr().String() + "发送信息...")
+
 	for {
 		buf := make([]byte, 1024)
 		//conn.Read(buf)
 		//1.等待客户端通过conn发送信息
 		//2.如果客户端没有write[发送]，那么协程会阻塞在这
-		fmt.Println("服务器在等待客户端" + conn.RemoteAddr().String() + "发送信息...")
 		n, err := conn.Read(buf)
 		if err != nil {
 			fmt.Println("服务端read err=", err)
