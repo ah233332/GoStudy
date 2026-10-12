@@ -88,12 +88,15 @@ study/
     │   ├── reflect-caseBest/      反射操作结构体：遍历字段、读 json tag、按名字调用方法、FieldByName 修改字段值
     │   ├── 反射基本.txt           反射的优缺点、interface{} / reflect.Value / 原类型 三种转换
     │   └── 反射转换示意图.png
-    └── TCP-Program/               TCP编程
-        ├── 网络编程基础           TCP/IP、HTTP 等基础概念笔记
-        └── tcp-socket/            TCP socket 入门：服务端监听、客户端连接与收发
-            ├── serve/serve.go     监听 127.0.0.1:8800，Accept 后开 goroutine 循环读取客户端发来的数据
-            ├── client/client.go   循环读终端输入，带上本地地址发给服务端，输入 exit 关闭链接退出
-            └── tcp-socket快速入门.txt  服务端/客户端流程笔记；已完成：持续交互、输入 exit 退出
+    ├── TCP-Program/               TCP编程
+    │   ├── 网络编程基础           TCP/IP、HTTP 等基础概念笔记
+    │   └── tcp-socket/            TCP socket 入门：服务端监听、客户端连接与收发
+    │       ├── serve/serve.go     监听 127.0.0.1:8800，Accept 后开 goroutine 循环读取客户端发来的数据
+    │       ├── client/client.go   循环读终端输入，带上本地地址发给服务端，输入 exit 关闭链接退出
+    │       └── tcp-socket快速入门.txt  服务端/客户端流程笔记；已完成：持续交互、输入 exit 退出
+    └── redis/                     Redis 学习
+        ├── redis基础知识.txt      五种基础数据类型（String/Hash/List/Set/ZSet）与常用 CRUD 命令
+        └── main.go                待完成：Redis 连接与操作练习
 ```
 
 ## 常用命令
