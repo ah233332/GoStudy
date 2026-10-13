@@ -7,6 +7,11 @@ redis五种基础数据类型
 
 redis安装完，默认有16个数据库，默认为0号库 0~15
 
+redis链接池
+    1.事先初始化一定数量的链接，放到链接池中
+    2.当go需要操作redis时，直接从redis链接池取出链接即可
+    3.这样可以节省临时获取redis链接的时间，提高效率
+
 基本操作CRUD
     1.添加一个key-value (set key value)
         set指令，存在则修改，不存在则添加
@@ -20,31 +25,32 @@ redis安装完，默认有16个数据库，默认为0号库 0~15
         超时自动删除数据
     9.同时设置一个或多个key-value(mset)(mget)
 
-String类型
-    一个key对应一个value
-    除了字符串外，也可以存放图片等二进制数据
-    redis内value一个最大为512M
+具体操作
+    String类型
+        一个key对应一个value
+        除了字符串外，也可以存放图片等二进制数据
+        redis内value一个最大为512M
 
-Hash哈希  一个键值对集合
-    hset hmset
-    hget hgetall hmget
-    hdel
-    hlen    统计有多少元素
-    hexists 判断key中有无name字段
+    Hash哈希  一个键值对集合
+        hset hmset
+        hget hgetall hmget
+        hdel
+        hlen    统计有多少元素
+        hexists 判断key中有无name字段
 
-List列表  双向链表，元素有序，可重复
-    lpush   头插法，从左边写入数据
-    rpush   尾插法，从右边写入数据
-    lrange key 0 -1 遍历链表
-    del  
-    lpop key 从左边取出数据并删除
-    rpop key 从右边取出数据并删除
-        pop完了，key会自动清除
-    llen 返回链表长度,空为0
+    List列表  双向链表，元素有序，可重复
+        lpush   头插法，从左边写入数据
+        rpush   尾插法，从右边写入数据
+        lrange key 0 -1 遍历链表
+        del  
+        lpop key 从左边取出数据并删除
+        rpop key 从右边取出数据并删除
+            pop完了，key会自动清除
+        llen 返回链表长度,空为0
 
-Set合集 无序，不重复
-    sadd key member... 
-    smember key  查看所有值
-    srem key member 删除指定值
-    sismember key member 看key中是否有该member值
+    Set合集 无序，不重复
+        sadd key member... 
+        smember key  查看所有值
+        srem key member 删除指定值
+        sismember key member 看key中是否有该member值
 
