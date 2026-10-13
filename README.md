@@ -96,7 +96,9 @@ study/
     │       └── tcp-socket快速入门.txt  服务端/客户端流程笔记；已完成：持续交互、输入 exit 退出
     └── redis/                     Redis 学习
         ├── redis基础知识.txt      五种基础数据类型（String/Hash/List/Set/ZSet）与常用 CRUD 命令
-        └── main.go                待完成：Redis 连接与操作练习
+        ├── redis-demo/main.go     redigo 直连 127.0.0.1:6379，练习 String/Hash/List 读写与 expire
+        ├── redis-pool/main.go     redigo 连接池：MaxIdle/MaxActive/IdleTimeout，从池中取连接读写
+        └── redis-case/            待完成：终端输入 3 个 Monster（name/age/skill）存成 hash，再用 keys monster* 遍历输出
 ```
 
 ## 常用命令
