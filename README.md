@@ -1,10 +1,10 @@
 # Go 学习笔记
 
-2026 年 9 月开始，从零学 Go 的练习仓库。
+2026 年 9 月开始，从零学 Go 的练习仓库，现在基本完结了。
 
-内容大都是跟着B站课程手搓的，排序分类也很随意。
+内容都是跟着 B 站课程一点点手搓出来的，按主题分类整理，涵盖基础语法、标准库、并发、反射、网络编程和 Redis 等，代码和讲解性注释都保留着。
 
-参考价值不大，就是学习日记，记录一下。
+分类整理了一下，内容还算完整，适合同样刚开始学 Go 的同学参考，配合课程边看边练。
 
 
 ## 运行方式
@@ -28,7 +28,7 @@ study/
 │   ├── for-loop/                 for 循环、range 遍历
 │   ├── array-slice/              数组、切片、append 与 make、sort.Slice
 │   ├── map/                      map 增删改查、comma-ok 判断
-│   ├── func-menu/                函数是一等公民：map[int]func() 做菜单分发
+│   ├── func-menu/                函数：map[int]func() 做菜单分发
 │   ├── func-variadic/            变参函数、range 求和、九九乘法表
 │   ├── struct-json/              结构体、匿名嵌入、方法、struct tag 与 json
 │   └── init-defer/               init 函数、defer 执行顺序
@@ -98,7 +98,7 @@ study/
         ├── redis基础知识.txt      五种基础数据类型（String/Hash/List/Set/ZSet）与常用 CRUD 命令
         ├── redis-demo/main.go     redigo 直连 127.0.0.1:6379，练习 String/Hash/List 读写与 expire
         ├── redis-pool/main.go     redigo 连接池：MaxIdle/MaxActive/IdleTimeout，从池中取连接读写
-        └── redis-case/            待完成：终端输入 3 个 Monster（name/age/skill）存成 hash，再用 keys monster* 遍历输出
+        └── redis-case/            终端输入若干 Monster（name/age/skill），hmset 存成 monN 哈希，再 hgetall 遍历输出
 ```
 
 ## 常用命令
@@ -112,6 +112,12 @@ gofmt -l .               # 列出没有格式化的文件
 gofmt -w .               # 格式化并写回
 ```
 
-## 待办
+## 尾声
 
-接着学习GO语言进阶内容，再学习Gin框架，后续完善打通项目前后端
+<div align="center">
+
+<h3>学无止境，愿热情常在。</h3>
+
+</div>
+
+
